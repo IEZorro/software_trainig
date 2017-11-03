@@ -22,3 +22,31 @@
 # The sum for the sample text above is 27486. The numbers can appear anywhere in the line. There can be any number of numbers in each line (including none).
 # Handling The Data
 # The basic outline of this problem is to read the file, look for integers using the re.findall(), looking for a regular expression of '[0-9]+' and then converting the extracted strings to integers and summing up the integers.
+import re
+
+fileSum = 0
+
+txtFile = open("sample.txt", "r")
+
+for i in txtFile:
+    try:
+        if re.match("[0-9]+", i).group(0) != None:
+            fileSum += int(re.match("^[0-9]+", i).group(0))
+            print(fileSum)
+    except:
+        continue
+print(fileSum)
+
+
+#Code done for an exercise done on Codewars
+# import re
+#
+# def validate_code(code):
+#     test = [1,2,3]
+#     try:
+#         #needed to use .group() b/c it return originally return as an object not a usable string or num
+#         #also had to use proper data types using str() and int()
+#         print(int(re.match(r'^[1-3][0-9]*$', str(code)).group(0)))
+#     except:
+#         return False
+# validate_code(31233421)

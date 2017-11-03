@@ -1,28 +1,20 @@
-# http://www.codeskulptor.org/docs.html
-try:
-    import simplegui
-except ImportError:
-    import SimpleGUICS2Pygame.simpleguics2pygame as simplegui
-import random
+import simplegui
 
-template = "Lets Begin!"
-message = template
+message = "Lets Begin!"
 second_count = 0
 
 #format time function
 def format(time):
-    #we get an integer that needs logic to become A:BC.D
-    #Idea: divide by 600 if === int: save counter of this for mins
-    #Make counter that moves with secs and retarts after 60 secs and use that for secs
-    #splice last number in time for the dotsec
-    #
-    sec_time = 0
-    time = str(time)
-    dotsec = time[-1]
-    sec = time[-3:-1]
-    mins = time[0: -3]
-
-    return mins + ":" + sec + "." + dotsec
+    D = time % 10
+    if time == 0:
+        return "." + D
+    elif time // 10 != 0:
+        time = time // 10
+        BC = time % 60
+        if len(str(BC)) == 1:
+            BC = "0" + str(time % 60)
+        A = time // 60
+        return str(A) + ":" + str(BC) + "." + str(D)
 
 # Handler for mouse click
 def click_on():
@@ -35,7 +27,7 @@ def display_time():
     global message
     global second_count
     second_count += 1
-    message = format(second_count)
+    message = str(format(second_count))
 
 # Handler to draw on canvas
 def draw(canvas):
