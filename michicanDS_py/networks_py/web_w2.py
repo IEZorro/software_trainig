@@ -25,18 +25,38 @@
 import re
 
 fileSum = 0
+# #If you don't open you won't be able to see content
+textFile = open("Assignment.txt", "r")
 
-txtFile = open("sample.txt", "r")
-
-for i in txtFile:
-    try:
-        if re.match("[0-9]+", i).group(0) != None:
-            fileSum += int(re.match("^[0-9]+", i).group(0))
-            print(fileSum)
-    except:
-        continue
+for i in textFile:
+    #Regex Below, simple, to find numbers in the file within each line as its own str
+    s = re.findall(r"[0-9]+", i)
+    #As we get hits on our findall,saved as str, we add them  using int()
+    for number in s:
+        fileSum += int(number)
 print(fileSum)
 
+# import re
+#
+# fileSum = 0
+# #
+# # #If you don't open you won't be able to see content
+# textFile = open("sample.txt", "r")
+#
+# for i in textFile:
+#         s = re.findall(r"[0-9]+", i)
+#         print(s)
+#         for number in s:
+#             fileSum += int(number)
+# #         # fileSum += s
+# #         # print(i)
+# #         # print(int(re.search(r'^[0-9]+', i).group(0)))
+# #         if re.match(r"[0-9]+", i) != None:
+# #             fileSum += int(re.match(r'[0-9]+', i).group(0))
+# #             print(fileSum)
+# #     # except:
+# #     #     continue
+# print(fileSum)
 
 #Code done for an exercise done on Codewars
 # import re
